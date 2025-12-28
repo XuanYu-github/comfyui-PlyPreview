@@ -1,0 +1,8 @@
+{
+  "name": "comfyui-PlyPreview",
+  "display_name": "PlyPreview",
+  "description": "Gaussian Splat PLY loader + preview nodes (Load, Load Path, Process, Preview) with bundled gsplat viewer.",
+  "author": "XuanYu-github",
+  "repo": "https://github.com/XuanYu-github/comfyui-PlyPreview",
+  "license": "GPL-3.0-or-later"
+}
