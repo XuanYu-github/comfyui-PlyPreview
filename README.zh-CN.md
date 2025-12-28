@@ -1,8 +1,8 @@
 # ComfyUI PlyPreview
 
-[中文](README.md) | [English](README.en.md)
-
 Gaussian Splat PLY 加载与预览节点，独立于 GeometryPack，内置 gsplat.js 前端查看器。
+
+[English](README.en.md) | [中文](README.md)
 
 ## 节点
 - Load Gaussian PLY：从 `input/`、`input/3d`、`output/` 下拉选择，支持自动分辨率、FOV 10–180°、可选透明度过滤。
