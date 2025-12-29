@@ -4,6 +4,7 @@
  */
 
 import { app } from "../../../scripts/app.js";
+import { api } from "../../../scripts/api.js";
 
 // Auto-detect extension folder name (handles comfyui-PlyPreview or other folder names)
 const EXTENSION_FOLDER = (() => {
@@ -18,6 +19,43 @@ app.registerExtension({
     name: "plypreview.gaussianpreview",
 
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
+        // Auto-refresh PLY dropdown list for the file selector node
+        if (nodeData.name === "PlyPreviewLoadGaussianPLYEnhance") {
+            const onNodeCreated = nodeType.prototype.onNodeCreated;
+            nodeType.prototype.onNodeCreated = function() {
+                const r = onNodeCreated ? onNodeCreated.apply(this, arguments) : undefined;
+
+                const widget = (this.widgets || []).find(w => w.name === "ply_file");
+
+                const refreshList = async () => {
+                    try {
+                        const resp = await api.fetchApi("/plypreview/files");
+                        const json = await resp.json();
+                        const files = Array.isArray(json.files) && json.files.length > 0 ? json.files : ["No PLY files found"];
+                        if (widget) {
+                            widget.options.values = files;
+                            widget.value = files[0];
+                            this.setDirtyCanvas(true);
+                            app.graph.setDirtyCanvas(true, true);
+                        }
+                    } catch (e) {
+                        console.warn("[PlyPreview] Failed to refresh PLY list", e);
+                    }
+                };
+
+                this.refreshPlyList = refreshList;
+                refreshList();
+
+                // Add in-node refresh button instead of relying on context menu
+                this.addWidget("button", "Refresh PLY list", () => this.refreshPlyList && this.refreshPlyList(), {
+                    serialize: false,
+                    width: 180,
+                });
+
+                return r;
+            };
+        }
+
         if (nodeData.name === "PlyPreviewPreviewGaussianEnhance") {
             console.log("[PlyPreview Gaussian] Registering Preview Gaussian Enhance node");
 

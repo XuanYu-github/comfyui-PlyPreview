@@ -143,6 +143,12 @@
         const infoPanel = document.getElementById('infoPanel');
         const infoContent = document.getElementById('infoContent');
 
+        // Make canvas focusable so keyboard controls (WASD/arrows) work after clicking the viewer
+        canvas.tabIndex = 0;
+        canvas.style.outline = "none";
+        const focusCanvas = () => canvas.focus({ preventScroll: true });
+        canvas.addEventListener('pointerdown', focusCanvas);
+
         // gsplat.js components
         let scene = null;
         let camera = null;

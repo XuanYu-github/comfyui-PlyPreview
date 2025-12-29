@@ -32,6 +32,12 @@ git clone https://github.com/XuanYu-github/comfyui-PlyPreview.git
 2) 连接 Preview Gaussian，执行后 iframe 显示控制条（Scale、Reset View、Screenshot）和信息面板。
 3) 若启用透明度过滤，会在源旁生成 `_opacity{threshold}.ply`。
 
+示例：
+
+![Sharp → PlyPreview 工作流示例](Figure1.png)
+
+![加载与刷新 PLY 列表示例](Figure2.png)
+
 ## 依赖
 - ComfyUI（默认已启用 DOM widgets）。
 - Python：`plyfile`、`numpy`（缺失时 `pip install plyfile numpy`）。
