@@ -33,8 +33,14 @@ app.registerExtension({
                         const json = await resp.json();
                         const files = Array.isArray(json.files) && json.files.length > 0 ? json.files : ["No PLY files found"];
                         if (widget) {
-                            widget.options.values = files;
-                            widget.value = files[0];
+                            // Update dropdown choices and keep current selection if still present
+                            widget.options = { ...(widget.options || {}), values: files };
+                            if (!files.includes(widget.value)) {
+                                widget.value = files[0];
+                                widget.callback?.(widget.value);
+                            }
+                            // Force UI redraw
+                            widget.computeSize?.();
                             this.setDirtyCanvas(true);
                             app.graph.setDirtyCanvas(true, true);
                         }
@@ -46,10 +52,13 @@ app.registerExtension({
                 this.refreshPlyList = refreshList;
                 refreshList();
 
-                // Add in-node refresh button instead of relying on context menu
-                this.addWidget("button", "Refresh PLY list", () => this.refreshPlyList && this.refreshPlyList(), {
+                // Hint label: user must right-click "Reload Node" to refresh PLY list
+                const hintEl = document.createElement("div");
+                hintEl.style.cssText = "font-size:10px;color:#888;text-align:center;padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;";
+                hintEl.textContent = "Right-click → Refresh Node to load new PLY files";
+                this.addDOMWidget("ply_hint", "PLY_HINT", hintEl, {
                     serialize: false,
-                    width: 180,
+                    hideOnZoom: false,
                 });
 
                 return r;

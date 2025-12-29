@@ -169,6 +169,7 @@
             try {
                 scene = new SPLAT.Scene();
                 camera = new SPLAT.Camera();
+                // WebGLRenderer - preserveDrawingBuffer enabled in gsplat-bundle.js
                 renderer = new SPLAT.WebGLRenderer(canvas);
                 controls = new SPLAT.OrbitControls(camera, canvas);
 

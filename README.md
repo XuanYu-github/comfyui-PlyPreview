@@ -38,6 +38,12 @@ git clone https://github.com/XuanYu-github/comfyui-PlyPreview.git
 
 ![加载与刷新 PLY 列表示例](Figure2.png)
 
+### Preview Gaussian 节点键盘操作
+- 点击预览区域以获取焦点后，W/S/A/D 平移视角（前/后/左/右）。
+- Q/E 水平旋转（Q 左旋，E 右旋）。
+- R/F 俯仰旋转（R 上仰，F 下俯）。
+- 鼠标左键拖拽旋转，右键拖拽平移，滚轮缩放。
+
 ## 依赖
 - ComfyUI（默认已启用 DOM widgets）。
 - Python：`plyfile`、`numpy`（缺失时 `pip install plyfile numpy`）。
