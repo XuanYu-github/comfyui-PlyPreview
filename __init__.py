@@ -11,17 +11,17 @@ from .preview_gaussian import PreviewGaussianNode
 WEB_DIRECTORY = "web"
 
 NODE_CLASS_MAPPINGS = {
-    "PlyPreviewLoadGaussianPLY": LoadGaussianPLY,
-    "PlyPreviewLoadGaussianPLYPath": LoadGaussianPLYPath,
-    "PlyPreviewProcessGaussianPLY": ProcessGaussianPLY,
-    "PlyPreviewPreviewGaussian": PreviewGaussianNode,
+    "PlyPreviewLoadGaussianPLYEnhance": LoadGaussianPLY,
+    "PlyPreviewLoadGaussianPLYPathEnhance": LoadGaussianPLYPath,
+    "PlyPreviewProcessGaussianPLYEnhance": ProcessGaussianPLY,
+    "PlyPreviewPreviewGaussianEnhance": PreviewGaussianNode,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "PlyPreviewLoadGaussianPLY": "Load Gaussian PLY",
-    "PlyPreviewLoadGaussianPLYPath": "Load Gaussian PLY (Path)",
-    "PlyPreviewProcessGaussianPLY": "Process Gaussian PLY",
-    "PlyPreviewPreviewGaussian": "Preview Gaussian",
+    "PlyPreviewLoadGaussianPLYEnhance": "Load Gaussian PLY Enhance",
+    "PlyPreviewLoadGaussianPLYPathEnhance": "Load Gaussian PLY (Path) Enhance",
+    "PlyPreviewProcessGaussianPLYEnhance": "Process Gaussian PLY Enhance",
+    "PlyPreviewPreviewGaussianEnhance": "Preview Gaussian Enhance",
 }
 
 __all__ = [

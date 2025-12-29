@@ -18,8 +18,8 @@ app.registerExtension({
     name: "plypreview.gaussianpreview",
 
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
-        if (nodeData.name === "PlyPreviewPreviewGaussian") {
-            console.log("[PlyPreview Gaussian] Registering Preview Gaussian node");
+        if (nodeData.name === "PlyPreviewPreviewGaussianEnhance") {
+            console.log("[PlyPreview Gaussian] Registering Preview Gaussian Enhance node");
 
             const onNodeCreated = nodeType.prototype.onNodeCreated;
             nodeType.prototype.onNodeCreated = function() {
